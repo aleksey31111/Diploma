@@ -1,0 +1,1 @@
+	<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>

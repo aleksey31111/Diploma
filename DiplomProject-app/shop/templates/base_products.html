@@ -51,17 +51,19 @@
 						<li><a href="https://www.google.com/maps/place/%D0%9D%D0%B8%D0%B6%D0%BD%D0%B5%D0%BA%D0%B0%D0%BC%D1%81%D0%BA,+%D0%A0%D0%B5%D1%81%D0%BF.+%D0%A2%D0%B0%D1%82%D0%B0%D1%80%D1%81%D1%82%D0%B0%D0%BD/@55.6146605,51.8925854,12z/data=!3m1!4b1!4m5!3m4!1s0x415fecad116124e1:0x62ec0a5ee724e1cc!8m2!3d55.613196!4d51.8469974"><i class="fa fa-map-marker"></i> Нижнекамск</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-
+						{% if user.is_authenticated %}
 						<li>
                     		<a href="{% url 'profile' %}" >
 								<i class="fa fa-dollar"></i>
 								{{ user.username }}
                     		</a>
                 		</li>
-						<li><a href="{% url 'login' %}"><i class="fa fa-user-o"></i>Войти</a></li>
 						<li class="nav-item">
                     		<a class="nav-link" href="{% url 'logout' %}">Выйти <i class="fas fa-sign-out-alt"></i></a>
                 		</li>
+						{% else %}
+						<li><a href="{% url 'login' %}"><i class="fa fa-user-o"></i>Войти</a></li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
@@ -149,8 +151,8 @@
 											<h5>SUBTOTAL: $2940.00</h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">Просмотр корзины</a>
-											<a href="#">Проверить  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="{% url 'profile' %}">Просмотр корзины</a>
+											<a href="{% url 'profile' %}">Проверить  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -184,15 +186,24 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="{% url 'index' %}#">Главная</a></li>
-						<li><a href="{% url 'profitable_proposition' %}">Выгодное предложения</a></li>
-						<li><a href="{% url 'products' %}">Категории</a></li>
+
 						{% for category in categories %}
-						<li><a href="{% url 'produsts/1' %}">Диски</a></li>
+						{% if category.id == 8 %}
+						<li class="active"><a href="{% url 'index' %}#">Главная</a></li>
+						<li><a href="{% url 'category' category.id %}">Выгодное предложения</a></li>
+						<li><a href="{% url 'products' %}">Категории</a></li>
+
+						{% elif category.id == 1 %}
+						<li><a href="{% url 'category' category.id %}">Диски</a></li>
+						{% elif category.id == 7 %}
+						<li><a href="{% url 'category' category.id %}">Аксессуары</a></li>
+						{% elif category.id == 5 %}
+						<li><a href="{% url 'category' category.id %}">Роботы</a></li>
+						{% endif %}
 						{% endfor %}
-						<li><a href="{% url 'products' %}">Смартфоны</a></li>
-						<li><a href="{% url 'products' %}">Камеры</a></li>
-						<li><a href="{% url 'products' %}">Аксессуары</a></li>
+
+
+
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -223,16 +234,24 @@
 							</form>
 							<ul class="newsletter-follow">
 								<li>
-									<a href="#"><i class="fa fa-facebook"></i></a>
+									<a href="https://soc-faq.ru/facebook/entrance-fb/vhod-na-moyu-stranitsu.html">
+										<i class="fa fa-facebook"></i>
+									</a>
 								</li>
 								<li>
-									<a href="#"><i class="fa fa-twitter"></i></a>
+									<a href="https://hca.twimg.com/ru/using-twitter/create-twitter-account">
+										<i class="fa fa-twitter"></i>
+									</a>
 								</li>
 								<li>
-									<a href="#"><i class="fa fa-instagram"></i></a>
+									<a href="https://soc-faq.ru/instagram/entrance-in/voyti-na-svou-stanicy-v-inste.html">
+										<i class="fa fa-instagram"></i>
+									</a>
 								</li>
 								<li>
-									<a href="#"><i class="fa fa-pinterest"></i></a>
+									<a href="https://ru.pinterest.com/">
+										<i class="fa fa-pinterest"></i>
+									</a>
 								</li>
 							</ul>
 						</div>
@@ -255,12 +274,16 @@
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">О нас</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-									sed do eiusmod tempor incididunt ut.</p>
+								<p>Дипломная работа WEB-программирование
+									на языке Python.</p>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
+									<li><a href="https://www.google.com/maps/place/%D0%9D%D0%B8%D0%B6%D0%BD%D0%B5%D0%BA%D0%B0%D0%BC%D1%81%D0%BA,+%D0%A0%D0%B5%D1%81%D0%BF.+%D0%A2%D0%B0%D1%82%D0%B0%D1%80%D1%81%D1%82%D0%B0%D0%BD/@55.6146605,51.8925854,12z/data=!3m1!4b1!4m5!3m4!1s0x415fecad116124e1:0x62ec0a5ee724e1cc!8m2!3d55.613196!4d51.8469974">
+										<i class="fa fa-map-marker"></i>Нижнекамск</a>
+									</li>
 									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="https://www.google.com/intl/ru/gmail/about/">
+										<i class="fa fa-envelope-o"></i>email@email.com</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -269,11 +292,17 @@
 							<div class="footer">
 								<h3 class="footer-title">Categories</h3>
 								<ul class="footer-links">
-									<li><a href="{% url 'profitable_proposition' %}">Выгодные предложения</a></li>
-									<li><a href="{% url 'products' %}">Диски</a></li>
-									<li><a href="{% url 'products' %}">Смартфоны</a></li>
-									<li><a href="{% url 'products' %}">Камеры</a></li>
-									<li><a href="{% url 'products' %}">Аксессуары</a></li>
+									<li><a href="#">Выгодные предложения</a></li>
+									{% for category in categories %}
+									{% if category.id == 1 %}
+									<li><a href="{% url 'category' category.id %}">Диски</a></li>
+									{% elif category.id == 7 %}
+									<li><a href="{% url 'category' category.id %}">Аксессуары</a></li>
+									{% elif category.id == 5 %}
+									<li><a href="{% url 'category' category.id %}">Роботы</a></li>
+									{% endif %}
+									{% endfor %}
+
 								</ul>
 							</div>
 						</div>
@@ -297,7 +326,13 @@
 							<div class="footer">
 								<h3 class="footer-title">Service</h3>
 								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
+									<li>
+										<a href="{% url 'profile' %}" >
+											<i class="fa fa-dollar"></i>
+											Мой Аккаунт
+										</a>
+									</li>
+
 									<li><a href="#">View Cart</a></li>
 									<li><a href="#">Wishlist</a></li>
 									<li><a href="#">Track My Order</a></li>

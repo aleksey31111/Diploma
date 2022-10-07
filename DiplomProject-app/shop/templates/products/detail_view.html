@@ -1,0 +1,17 @@
+{% extends 'base_products.html' %]
+{% block content %}
+    {% if detail_view %}
+    {% for detail_view in detail_view %}
+    <h4>Категория - {{ detail_view.category }}</h4>
+    <h1>Название продукта - {{ detail_view.name }}</h1>
+    <p>Краткое описание - {{ detail_view.short_description }}</p>
+    <p>Изображение товара - {{ detail_view.image.url }}</p>
+    <p>Описание - {{ detail_view.description }}</p>
+    <p>Цена - {{ detail_view.price }}</p>
+    <p>Доступное количество изделий - {{ detail.view.quantity }}</p>
+    <p>Время добавления товара - {{ detaiil_view.time }}</p>
+    <p>Время обновления информации о тваре - {{ detail_view.time_update }}</p>
+    {% endfor %}
+    {% endif %}
+
+{% endblock %}

@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
+# from django.views.generic import FormView
+# from django.urls import reverse_lazy
 
 from products.models import Basket
-from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
+from users.forms import UserLoginForm, UserRegistrationForm, \
+    UserProfileForm  # , ContactForm
 
 
 def login(request):
@@ -60,3 +63,20 @@ def profile(request):
 def logout(request):
     auth.logout(request)
     return redirect('index')
+
+
+# class ContactFormView(FormView):
+#     form_class = ContactForm
+#     template_name = 'users/contact.html'
+#     success_url = reverse_lazy('index')
+#
+#     def get(self, request, *args, **kwargs):
+#         # context = {}
+#         # context.update(csrf(request))  # Обязательно добавьте в шаблон защитный токен
+#         context = {
+#             'contact_form' = ContactForm(),
+#             'title' = 'Обратная связь',
+#         }
+#         return reverse_lazy('users/contact.html', context)
+#         # return render(request, 'users/contact.html', context)
+#

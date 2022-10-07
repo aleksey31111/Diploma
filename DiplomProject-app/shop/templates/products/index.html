@@ -137,7 +137,7 @@
 									<div class="products-slick" data-nav="#slick-nav-1">
 										<!-- product -->
 										{% for product in products %}
-
+										{% if product.category.id != 8 %}
 										<div class="product">
 											<div class="product-img">
 												<img src="{% if product.image %} {{ product.image.url }}
@@ -148,7 +148,7 @@
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">Category</p>
+												<p class="product-category">{{ product.category }}</p>
 												<h3 class="product-name"><a href="#">{{ product.name }}</a></h3>
 												<h4 class="product-price">{{ product.price }} руб</h4>
 												<div class="product-rating">
@@ -165,19 +165,19 @@
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<a href="{% url 'basket_add' product.id %}">
-													<button class="add-to-cart-btn">
-														<i class="fa fa-shopping-cart"></i> add to cart
-													</button>
+													<a href="{% url 'basket_add' product.id %}">
+													<input type="submit" class="add-to-cart-btn" value="Добавить в корзину">
+														<i class="fa fa-shopping-cart"></i>
+													</input>
 												</a>
+
 											</div>
 										</div>
+
+										{% endif %}
 										{% endfor %}
 										<!-- /product -->
 
-									</div>
-									<div id="slick-nav-1" class="products-slick-nav"></div>
-								</div>
 								<!-- /tab -->
 							</div>
 						</div>
@@ -189,9 +189,9 @@
 
 										<!-- BASKET index_Electro_html.txt -->
 									</div>
-									<div id="slick-nav-1"
-										 class="products-slick-nav"></div>
-								</div>
+										<div id="slick-nav-1"
+										 	class="products-slick-nav"></div>
+									</div>
 
 								<!-- /tab -->
 
@@ -254,12 +254,7 @@
 
 		<!-- /SECTION -->
 <!-- 442 -->
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-			<!-- /SECTION -->
+
 <!-- 442 -->
 		<!-- SECTION -->
 		<div class="section">
@@ -267,7 +262,7 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					{% for profitableproposition in profitablepropositions %}
+
 					<div class="col-md-4 col-xs-6">
 						<div class="section-title">
 							<h4 class="title">Выгодное предложенте</h4>
@@ -280,8 +275,7 @@
 							<div>
 								<!-- product widget -->
 								{% for product in products %}
-								{% for category in categories %}
-								{% if category == 8 %}
+								{% if product.category.id == 8 %}
 								<div class="product-widget">
 									<div class="product-img">
 										<img src="{% if product.image %}
@@ -290,15 +284,21 @@
 									</div>
 									<div class="product-body">
 										<p class="product-category">{{ produuct.image }}</p>
-										<h3 class="product-name"><a href="{% url 'category' category.id %}">{{ product.name }}</a></h3>
-										<h4 class="product-price">{{ product.price }} руб
-
-										</h4>
+										<h3 class="product-name">{{ product.name }}</h3>
+										<h4 class="product-price">{{ product.price }} руб</h4>
 									</div>
+								</div>
+
+								<div class="add-to-cart">
+									<a href="{% url 'basket_add' product.id %}">
+										<input type="submit" class="add-to-cart-btn" value="Добавить в корзину">
+											<i class="fa fa-shopping-cart"></i>
+										</input>
+									</a>
 								</div>
 								{% endif %}
 								{% endfor %}
-								{% endfor %}
+
 								<!-- /product widget -->
 							</div>
 
@@ -308,7 +308,7 @@
 					<div class="clearfix visible-sm visible-xs"></div>
 
 
-					{% endfor %}
+
 
 				</div>
 				<!-- /row -->

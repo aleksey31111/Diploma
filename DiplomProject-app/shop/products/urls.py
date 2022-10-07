@@ -12,6 +12,10 @@ urlpatterns = [
     #      views.profitable_proposition, name='profitable_proposition_category'),
     # path('profitable_proposition/<int:page>', views.profitable_proposition, name='page'),
     path('products/basket-add/<int:product_id>', views.basket_add, name="basket_add"),
+    # path('product/product_list/', views.ProductsListView.as_view, name="products_list"),
+    path('product/<int:pk>/', views.detail_view, name='detail_view'),
+    path('product/<int:pk>/', views.detail, name='detail'),
+
     # path(
     #     'profitable_proposition/basket-add/<int:profitable_proposition_id>',
     #     views.profitable_proposition_basket_add, name="profitable_proposition_basket_add"

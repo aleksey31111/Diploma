@@ -1,0 +1,18 @@
+	<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
+
+<!-- 29.092022 --><!-- 181 -->
+									<li><a href="{% url 'products' %}">Диски</a></li>
+									<li><a href="{% url 'products' %}">Смартфоны</a></li>
+									<li><a href="{% url 'products' %}">Камеры</a></li>
+									<li><a href="{% url 'products' %}">Аксессуары</a></li>
+
+<!-- 314 -->
+<li><a href="#">My Account</a></li>
+
+<!-- 329 --> <-- 3.10.2022
+									<li>
+										<a href="{% url 'profile' %}" >
+											<i class="fa fa-dollar"></i>
+											Мой Аккаунт
+										</a>
+									</li>

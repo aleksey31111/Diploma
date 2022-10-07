@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'products.apps.ProductsConfig',
+    'contact_form.apps.ContactFormConfig',
     'captcha',
     # 'ckeditor',
     # 'ckeditor_uploader',
@@ -84,6 +85,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# Connect POSTMAIL
+EMAIL_HOST = 'smtp.internet.ru'          # Сервер для отправки сообщений
+EMAIL_HOST_USER = 'Aleksey Bashkirov'     # имя пользователя
+EMAIL_HOST_PASSWORD = 'rf%Fk1Tiq'      # пароль от ящика
+EMAIL_PORT = 2525                        # порт для подключения
+EMAIL_USE_TLS = True                     # использование протокола шифрования
+DEFAULT_FROM_EMAIL = 'bashkirov1985@internet.ru'  # email, с которого будет отправлено письмо
+
 
 
 # Password validation
@@ -135,6 +146,7 @@ AUTH_USER_MODEL = 'users.User'
 
 LOGIN_REDIRECT_URL = '/'
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"

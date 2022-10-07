@@ -1168,6 +1168,7 @@ textarea.input {
 .products-tabs>.tab-pane {
   display: block;
   height: 0;
+  margin = 2px;
   opacity: 0;
   visibility: hidden;
   overflow-y: hidden;
@@ -1179,6 +1180,7 @@ textarea.input {
   opacity: 1;
   visibility: visible;
   height: auto;
+
 }
 
 .products-slick-nav {
@@ -2130,6 +2132,7 @@ textarea.input {
   position: static;
   margin: 15px 0px;
 }
+
 
 /*=========================================================
 	13 -> RESPONSIVE

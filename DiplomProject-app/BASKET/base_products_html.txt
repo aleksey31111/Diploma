@@ -8,3 +8,20 @@
 
 <!-- 314 -->
 <li><a href="#">My Account</a></li>
+
+<!-- 329 --> <-- 3.10.2022
+									<li>
+										<a href="{% url 'profile' %}" >
+											<i class="fa fa-dollar"></i>
+											Мой Аккаунт
+										</a>
+									</li>
+
+<!-- 5.10.2022 --> <!-- 48 -->
+    <div class="card-footer text-center">
+                            <a href="{% url 'basket_add' product.id %}">
+                                <button type="button" class="btn btn-outline-success">
+                                    Отправить в корзину
+                                </button>
+                            </a>
+                        </div>

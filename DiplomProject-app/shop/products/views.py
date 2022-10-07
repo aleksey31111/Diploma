@@ -1,8 +1,24 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from products.models import Product, ProductCategory, Basket
-    # ProfitableProposition, ProfitablePropositionCategory,
+# from django.views import generic
+from django.http import HttpResponse
+from django.template import loader
 
+
+def detail(request, pk):
+    return HttpResponse("Детальная Информация о странице:", pk)
+
+
+def detail_view(request):
+    products = Product.object.all()
+    # template = loader.get_template('products/detail_view.html')
+    template_name = 'products/detail_view.html'
+    context = {
+        'detail_view': products
+    }
+    # return HttpResponse(template.render(context, request))
+    return render(template_name, context)
 
 def index(request, category_id=None):
     context = {
@@ -75,25 +91,55 @@ def basket_add(request, product_id):
         return redirect(current_page)
 
 
-def profitable_proposition_basket_add(request, profitable_proposition_id):
-    # current_page = request.META.get("HTTP_REFERER")
-    product = ProfitableProposition.objects.get(id=profitable_proposition_id)
-    baskets = Basket.objects.filter(user=request.user, product=product)
-    # baskets = Basket.objects.filter(user=request.user, product=product)
-    if not baskets.exists():
-        basket = Basket(user=request.user, product=product, quantity=1)
-        basket.save()
-        # Basket.objects.create(user=request.user, product=product, quantity=1)
-        # return redirect(current_page)
-        return redirect(request.META.get("HTTP_REFERER"))
-    else:
-        basket = baskets.first()
-        basket.quantity += 1
-        basket.save()
-        return redirect(request.META.get("HTTP_REFERER"))
+# def profitable_proposition_basket_add(request, profitable_proposition_id):
+#     # current_page = request.META.get("HTTP_REFERER")
+#     product = ProfitableProposition.objects.get(id=profitable_proposition_id)
+#     baskets = Basket.objects.filter(user=request.user, product=product)
+#     # baskets = Basket.objects.filter(user=request.user, product=product)
+#     if not baskets.exists():
+#         basket = Basket(user=request.user, product=product, quantity=1)
+#         basket.save()
+#         # Basket.objects.create(user=request.user, product=product, quantity=1)
+#         # return redirect(current_page)
+#         return redirect(request.META.get("HTTP_REFERER"))
+#     else:
+#         basket = baskets.first()
+#         basket.quantity += 1
+#         basket.save()
+#         return redirect(request.META.get("HTTP_REFERER"))
 
 
 def basket_delete(request, id):
     basket = Basket.objects.get(id=id)
     basket.delete()
     return redirect(request.META.get("HTTP_REFERER"))
+
+# class ProductsListView(generic.ListView):
+#     model = Product
+#     context_object_name = 'products_list'
+#     template_name = 'products/products_list.html'
+
+# class DetailView(generic.DetailView):
+#     queryset = Product.objects.all()
+#     context_object_name = 'detail_view'
+#     template_name = 'products/detail_view.html'
+#     def get_object(self):
+#         obj = super().get_object()
+#         obj.name
+#         return obj
+#     def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['title'] = 'Товар'
+    #     context['products_id'] = Product.objects.all()
+    #     return context
+
+
+
+#     try:
+#         product_id = Product.objects.get(pk=pk)
+#     except:
+#         raise ("Такого товара Нет")
+#     return render(request, 'products/detail_view.html',
+#                   context={'product': product_id})
+
+

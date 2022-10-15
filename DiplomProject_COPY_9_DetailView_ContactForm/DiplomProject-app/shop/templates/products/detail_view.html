@@ -1,0 +1,21 @@
+
+{% block content %}
+
+
+
+    <h1>Название продукта - {{ names }}</h1>
+
+    <h4>Категория - {{ images.url }}</h4>
+
+    <p>Краткое описание - {{ detail_view.short_description }}</p>
+    <p>Изображение товара - {{ detail_view.image.url }}</p>
+    <p>Описание - {{ detail_view.description }}</p>
+    <p>Цена - {{ detail_view.price }}</p>
+    <p>Доступное количество изделий - {{ detail.view.quantity }}</p>
+    <p>Время добавления товара - {{ detaiil_view.time }}</p>
+    <p>Время обновления информации о тваре - {{ detail_view.time_update }}</p>
+
+
+
+
+{% endblock %}

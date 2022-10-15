@@ -1,0 +1,23 @@
+{% extends 'base_products.html' %]
+
+{% block content %}
+
+    {% if detail %}
+
+    {% for detail in detail %}
+
+    <h4>Категория - {{ detail.category }}</h4>
+    <h1>Название продукта - {{ detail.name }}</h1>
+    <p>Краткое описание - {{ detail.short_description }}</p>
+    <p>Изображение товара - {{ detail.image.url }}</p>
+    <p>Описание - {{ detail.description }}</p>
+    <p>Цена - {{ detail.price }}</p>
+    <p>Доступное количество изделий - {{ detail.quantity }}</p>
+    <p>Время добавления товара - {{ detaiil.time }}</p>
+    <p>Время обновления информации о тваре - {{ detail.time_update }}</p>
+
+    {% endfor %}
+
+    {% endif %}
+
+{% endblock %}

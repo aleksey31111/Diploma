@@ -481,12 +481,12 @@ textarea.input {
 
 .header-search form .search-btn {
   height: 40px;
-  width: 100px;
   background: #D10024;
   color: #FFF;
-  font-weight: 700;
+  font-weight: 700px;
   border: none;
   border-radius: 0px 40px 40px 0px;
+
 }
 
 /*----------------------------*\
@@ -1168,7 +1168,6 @@ textarea.input {
 .products-tabs>.tab-pane {
   display: block;
   height: 0;
-  margin = 2px;
   opacity: 0;
   visibility: hidden;
   overflow-y: hidden;
@@ -1180,7 +1179,6 @@ textarea.input {
   opacity: 1;
   visibility: visible;
   height: auto;
-
 }
 
 .products-slick-nav {
@@ -2133,7 +2131,6 @@ textarea.input {
   margin: 15px 0px;
 }
 
-
 /*=========================================================
 	13 -> RESPONSIVE
 ===========================================================*/
@@ -2190,4 +2187,9 @@ textarea.input {
     float: none;
     margin-top: 10px;
   }
+}
+
+.bblock {
+        float: left; /*Задаем обтекание*/
+        color: white;
 }

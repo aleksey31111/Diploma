@@ -53,7 +53,7 @@
 					<ul class="header-links pull-right">
 						{% if user.is_authenticated %}
 						<li>
-                    		<a href="{% url 'profile' %}" >
+                    		<a href="{% url 'profile' %}">
 								<i class="fa fa-dollar"></i>
 								{{ user.username }}
                     		</a>
@@ -88,16 +88,13 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<select class="input-select">
-										<option value="0">Все категории</option>
-										<option value="1">Диски</option>
-										<option value="1">Аксессуары</option>
-										<option value="1">Роботы с искусственным интеллектом</option>
-									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
+
+								<form action="{% url 'products' %}">
+									<p style="color:white">ПОИСК</p>
+									<input type="search" class="search" name="search"
+										   style="width:70%">
 								</form>
+
 							</div>
 						</div>
 						<!-- /SEARCH BAR -->
@@ -105,66 +102,41 @@
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
-								<!-- Wishlist -->
-								<div>
+
+								<!-- Contact -->
+								<div class="bblock">
+								<form action="{% url 'contact' %}" method="post">
+
 									<a href="{% url 'contact' %}">
 										<i class="fa fa-heart-o"></i>
-										<span>Обратная связь</span>
-										<div class="qty">2</div>
+										<span style="color:white">Обратная связь</span>
+										<div class="qty"></div>
 									</a>
+
+								</form>
+
 								</div>
-								<!-- /Wishlist -->
+								<!-- /contact -->
 
 								<!-- Cart -->
-								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-										<i class="fa fa-shopping-cart"></i>
-										<span>Ваша корзина</span>
-										<div class="qty">3</div>
-									</a>
-									<div class="cart-dropdown">
-										<div class="cart-list">
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="{% static 'img/product01.png' %}" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">Перейти к устройству</a></h3>
-													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
 
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="./img/product02.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">Перейти к устройству/a></h3>
-													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
-										</div>
-										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
-										</div>
-										<div class="cart-btns">
-											<a href="{% url 'profile' %}">Просмотр корзины</a>
-											<a href="{% url 'profile' %}">Проверить  <i class="fa fa-arrow-circle-right"></i></a>
-										</div>
-									</div>
+								<div class="dropdown bblock">
+									<a href="{% url 'profile' %}" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span><a href="{% url 'profile' %}" >Просмотр корзины</a></span>
+
+										<div class="qty" >{{ total.quantity }}</div>
+
+									</a>
 								</div>
 								<!-- /Cart -->
 
+								<!-- 95 --><!-- Wishlist -->
+
+<!-- 103 --><!-- /Wishlist -->
+
 								<!-- Menu Toogle -->
-								<div class="menu-toggle">
-									<a href="#">
-										<i class="fa fa-bars"></i>
-										<span>Меню</span>
-									</a>
-								</div>
+
 								<!-- /Menu Toogle -->
 							</div>
 						</div>
@@ -186,24 +158,21 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-
 						{% for category in categories %}
-						{% if category.id == 8 %}
+						{% if category.id == 4 %}
 						<li class="active"><a href="{% url 'index' %}#">Главная</a></li>
 						<li><a href="{% url 'category' category.id %}">Выгодное предложения</a></li>
 						<li><a href="{% url 'products' %}">Категории</a></li>
 
+
 						{% elif category.id == 1 %}
 						<li><a href="{% url 'category' category.id %}">Диски</a></li>
-						{% elif category.id == 7 %}
+						{% elif category.id == 3 %}
 						<li><a href="{% url 'category' category.id %}">Аксессуары</a></li>
-						{% elif category.id == 5 %}
+						{% elif category.id == 2 %}
 						<li><a href="{% url 'category' category.id %}">Роботы</a></li>
 						{% endif %}
 						{% endfor %}
-
-
-
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -219,49 +188,6 @@
 {% endblock %}
 
 
-        <!-- NEWSLETTER -->
-		<div id="newsletter" class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="newsletter">
-							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
-							<form>
-								<input class="input" type="email" placeholder="Введите ваш Email">
-								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-							</form>
-							<ul class="newsletter-follow">
-								<li>
-									<a href="https://soc-faq.ru/facebook/entrance-fb/vhod-na-moyu-stranitsu.html">
-										<i class="fa fa-facebook"></i>
-									</a>
-								</li>
-								<li>
-									<a href="https://hca.twimg.com/ru/using-twitter/create-twitter-account">
-										<i class="fa fa-twitter"></i>
-									</a>
-								</li>
-								<li>
-									<a href="https://soc-faq.ru/instagram/entrance-in/voyti-na-svou-stanicy-v-inste.html">
-										<i class="fa fa-instagram"></i>
-									</a>
-								</li>
-								<li>
-									<a href="https://ru.pinterest.com/">
-										<i class="fa fa-pinterest"></i>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /NEWSLETTER -->
 
 		<!-- FOOTER -->
 		<footer id="footer">
@@ -290,16 +216,17 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Categories</h3>
+								<h3 class="footer-title">Категории товара</h3>
 								<ul class="footer-links">
-									<li><a href="#">Выгодные предложения</a></li>
 									{% for category in categories %}
 									{% if category.id == 1 %}
 									<li><a href="{% url 'category' category.id %}">Диски</a></li>
-									{% elif category.id == 7 %}
+									{% elif category.id == 3 %}
 									<li><a href="{% url 'category' category.id %}">Аксессуары</a></li>
-									{% elif category.id == 5 %}
+									{% elif category.id == 2 %}
 									<li><a href="{% url 'category' category.id %}">Роботы</a></li>
+									{% elif category.id == 4 %}
+									<li><a href="{% url 'category' category.id %}">Выгодные предложения</a></li>
 									{% endif %}
 									{% endfor %}
 
@@ -311,40 +238,41 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Information</h3>
+								<h3 class="footer-title">Обратная связь</h3>
 								<ul class="footer-links">
-									<li><a href="#">О нас</a></li>
-									<li><a href="#">Обратная связь</a></li>
-									<li><a href="#">Политика конфеденциальности</a></li>
-									<li><a href="#">Закзы и возвраты</a></li>
-									<li><a href="#">Условия</a></li>
+
+									<li>
+										<form action="{% url 'contact' %}" method="post">
+
+										<a href="{% url 'contact' %}">
+											<i class="fa fa-heart-o"></i>
+											<span style="color:white">Обратная связь</span>
+											<div class="qty"></div>
+										</a>
+
+										</form>
+									</li>
+
 								</ul>
 							</div>
 						</div>
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Сервис</h3>
+								<h3 class="footer-title">Профиль</h3>
 								<ul class="footer-links">
-
 									{% if user.is_authenticated %}
-
-					                <li class="nav-item">
-                    				<a class="nav-link" href="{% url 'profile' %}" >Корзина {{ user.username }}
-                        			<i class="fas fa-user-circle"></i>
-									</a>
+                					<li class="nav-item">
+                    					<a class="nav-link" href="{% url 'profile' %}" >
+											Мой профиль и корзина
+                        					<i class="fas fa-user-circle"></i>
+                    					</a>
                 					</li>
 									{% else %}
-					                <li class="nav-item">
-                    				<a class="nav-link" href="{% url 'login' %}">Войти <i class="fas fa-sign-in-alt"></i></a>
-                					</li>
-
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'login' %}">Войти Зарегистрироваться <i class="fas fa-sign-in-alt"></i></a>
+									</li>
                 					{% endif %}
-
-									<li><a href="#">View Cart</a></li>
-									<li><a href="#">Wishlist</a></li>
-									<li><a href="#">Track My Order</a></li>
-									<li><a href="#">Help</a></li>
 								</ul>
 							</div>
 						</div>
@@ -356,30 +284,9 @@
 			<!-- /top footer -->
 
 			<!-- bottom footer -->
-			<div id="bottom-footer" class="section">
-				<div class="container">
-					<!-- row -->
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<ul class="footer-payments">
-								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-							</ul>
-							<span class="copyright">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							</span>
-						</div>
-					</div>
-						<!-- /row -->
-				</div>
-				<!-- /container -->
-			</div>
+
+
+
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->

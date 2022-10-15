@@ -29,15 +29,8 @@
 							</div>
 							<div class="shop-body">
 								<h3>Диски<br>Коллекция</h3>
-
-
-
 								<a href="{% url 'category' category.id %}" class="list-group-item">
 									{{ category.name }}
-								</a>
-
-
-
 
 									<i class="fa fa-arrow-circle-right">
 									</i>
@@ -49,7 +42,7 @@
 					<!-- /shop -->
 
 					<!-- shop -->
-					{% elif category.id == 7 %}
+					{% elif category.id == 3 %}
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
@@ -59,15 +52,12 @@
 									<p style="text-indent:80px">Зарядники Коммуникаторы.</p>
 								</p>
 							</div>
-
 							<div class="shop-body">
 								<h3>Аксессуары<br>Коллекция</h3>
 
 								<a href="{% url 'category' category.id %}" class="list-group-item">
 									{{ category.name }}
 								</a>
-
-
 							</div>
 						</div>
 					</div>
@@ -75,7 +65,7 @@
 					<!-- /shop -->
 
 					<!-- shop -->
-					{% elif category.id == 5 %}
+					{% elif category.id == 2 %}
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
@@ -137,7 +127,6 @@
 									<div class="products-slick" data-nav="#slick-nav-1">
 										<!-- product -->
 										{% for product in products %}
-										{% if product.category.id != 8 %}
 										<div class="product">
 											<div class="product-img">
 												<img src="{% if product.image %} {{ product.image.url }}
@@ -149,7 +138,7 @@
 											</div>
 											<div class="product-body">
 												<p class="product-category">{{ product.category }}</p>
-												<h3 class="product-name"><a href="#">{{ product.name }}</a></h3>
+												<h3 class="product-name"><a href="{{ product.get_absolut_url }}">{{ product.name|safe|truncatewords:30 }}</a></h3>
 												<h4 class="product-price">{{ product.price }} руб</h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
@@ -165,19 +154,19 @@
 												</div>
 											</div>
 											<div class="add-to-cart">
-													<a href="{% url 'basket_add' product.id %}">
+												<a href="{% url 'basket_add' product.id %}">
 													<input type="submit" class="add-to-cart-btn" value="Добавить в корзину">
-														<i class="fa fa-shopping-cart"></i>
+														<i class="fa fa-shopping-cart"></i> Добавить в корзину
 													</input>
 												</a>
-
 											</div>
 										</div>
-
-										{% endif %}
 										{% endfor %}
 										<!-- /product -->
 
+									</div>
+
+								</div>
 								<!-- /tab -->
 							</div>
 						</div>
@@ -187,17 +176,7 @@
 
 
 
-										<!-- BASKET index_Electro_html.txt -->
-									</div>
-										<div id="slick-nav-1"
-										 	class="products-slick-nav"></div>
-									</div>
 
-								<!-- /tab -->
-
-							</div>
-						</div>
-					</div>
 					
 					<!-- Products tab & slick -->
 				</div>
@@ -254,7 +233,12 @@
 
 		<!-- /SECTION -->
 <!-- 442 -->
-
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+			<!-- /SECTION -->
 <!-- 442 -->
 		<!-- SECTION -->
 		<div class="section">
@@ -262,7 +246,6 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-
 					<div class="col-md-4 col-xs-6">
 						<div class="section-title">
 							<h4 class="title">Выгодное предложенте</h4>
@@ -270,35 +253,33 @@
 								<div id="slick-nav-3" class="products-slick-nav"></div>
 							</div>
 						</div>
-
 						<div class="products-widget-slick" data-nav="#slick-nav-3">
 							<div>
 								<!-- product widget -->
 								{% for product in products %}
-								{% if product.category.id == 8 %}
+								{% if product.category.id == 4 %}
 								<div class="product-widget">
 									<div class="product-img">
 										<img src="{% if product.image %}
 										{{ product.image.url }}
-										{% else %} {% static 'img/default_shop.jpg' %} {% endif %} " alt="">
+										{% else %} {% static 'img/default_shop.jpg' %} {% endif %} "
+											 alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">{{ produuct.image }}</p>
-										<h3 class="product-name">{{ product.name }}</h3>
+										<p class="product-category">{{ product.category }}</p>
+										<h3 class="product-name">{{ product.name|safe|truncatewords:30 }}</h3>
 										<h4 class="product-price">{{ product.price }} руб</h4>
 									</div>
 								</div>
-
 								<div class="add-to-cart">
 									<a href="{% url 'basket_add' product.id %}">
 										<input type="submit" class="add-to-cart-btn" value="Добавить в корзину">
 											<i class="fa fa-shopping-cart"></i>
-										</input>
+
 									</a>
 								</div>
 								{% endif %}
 								{% endfor %}
-
 								<!-- /product widget -->
 							</div>
 

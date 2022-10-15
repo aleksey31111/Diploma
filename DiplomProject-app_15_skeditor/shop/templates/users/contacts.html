@@ -1,0 +1,17 @@
+{% extends 'base_products.html' %}
+
+{% block content %}
+
+
+	<h1>Контакты</h1>
+    <h4>Напишите нам, если у вас есть вопросы</h4>
+    <p>
+        Пожалуйста, напишите свое имя, адрес электронной почты и сообщение.
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Отправить</button>
+    </form>
+
+{% endblock %}

@@ -12,7 +12,7 @@
 
         <div class="col-lg-3">
 
-            <h1 class="my-4">Store</h1>
+            <h1 class="my-4">Магазин Устройств</h1>
             <div class="list-group">
                  <a href="{% url 'products' %}" class="list-group-item">Все категории</a>
                 {% for category in categories %}
@@ -25,7 +25,12 @@
 
         <div class="col-lg-9">
 
-
+            <div>
+                <h3 style="margin: 50px">Поиск</h3>
+                <form action="{% url 'products' %}">
+                    <input type="search" class="search" name="search">
+                </form>
+            </div>
 
             <div class="row">
                 {% for product in products %}
@@ -38,10 +43,15 @@
                         </a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">{{ product.name }}</a>
+
+                                <a href="{{ product.get_absolut_url }}">{{ product.name|striptags|safe|truncatewords:30 }}</a>
+
                             </h4>
-                            <h5>{{ product.price }} руб.</h5>
-                            <p class="card-text">{{ product.short_description}}</p>
+                            <p class="card-text">Описание: {{ product.description|striptags|safe|truncatewords:20}}</p>
+                            <p class="card-text">Краткое описание: {{ product.short_description|safe|truncatewords:10}}</p>
+                            <p class="card-text">Количество: {{ product.quantity|safe|truncatewords:30}}</p>
+                            <h5>Цена: {{ product.price }} руб.</h5>
+
                         </div>
                         <div class="card-footer text-center">
                             <a href="{% url 'basket_add' product.id %}">
@@ -50,15 +60,6 @@
                                 </button>
                             </a>
                         </div>
-
-
-                            <a href="/products/{{ detail_view.id }}">
-                                <button style="margin:50px" type="button" class="btn btn-outline-success">
-                                Посмотреть товар
-                                </button>
-                            </a>
-
-
                     </div>
                 </div>
                 {% endfor %}

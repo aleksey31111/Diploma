@@ -1,1 +1,0 @@
-{% url 'basket_delete' basket.id %}

@@ -3,10 +3,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from products.models import Product, ProductCategory, Basket
-from users.forms import UserProfileForm
 from django.views.generic import DetailView
-
-
 
 
 def index(request, category_id=None):

@@ -12,6 +12,10 @@ class ProductCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolut_url(self):
+        return reverse('product_list_by_category',
+                       args=[self.slug])
+
     class Meta:
         verbose_name = "Категория устройства"
         verbose_name_plural = "Категории устройств"

@@ -3,7 +3,10 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 
 from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string, get_template
+from django.template.loader import get_template
+
+from django.conf import settings
+from django.core.mail import send_mail
 
 from products.models import Basket
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
@@ -73,6 +76,7 @@ def logout(request):
     auth.logout(request)
     return redirect('index')
 
+
 @login_required(login_url='/users/login')
 def contacts(request):
     context = {}
@@ -101,10 +105,11 @@ def send_message(name, email, message):
                'email': email,
                'message': message}
     subject = 'Сообщение от пользователя'
-    from_email = 'from@example.com'
+    from_email = 'bashkirov1985@internet.ru'
     text_content = text.render(context)
     html_content = html.render(context)
 
-    msg = EmailMultiAlternatives(subject, text_content, from_email, ['manager@example.com'])
+    msg = EmailMultiAlternatives(subject, text_content, from_email, ['bashkirov1985@internet.ru'])
     msg.attach_alternative(html_content, 'text/html')
     msg.send()
+    # send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['to@example.com'])

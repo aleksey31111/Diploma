@@ -136,14 +136,16 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'
 
 # Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.internet.ru'          # Сервер для отправки сообщений
-# EMAIL_HOST_USER = 'bashkirov1985@internet.ru'  # Aleksey Bashkirov     # имя пользователя
-# EMAIL_HOST_PASSWORD = 'rf%Fk1Tiq'      # пароль от ящика
-# EMAIL_PORT = 587                        # порт для подключения
-# EMAIL_USE_TLS = True                     # использование протокола шифрования
-# DEFAULT_FROM_EMAIL = 'bashkirov1985@internet.ru'  # email, с которого будет отправлено письмо
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'          # Сервер для отправки сообщений
+EMAIL_PORT = 2525                        # порт для подключения
+EMAIL_HOST_USER = 'bashkirov1985@internet.ru'  # Aleksey Bashkirov     # имя пользователя
+EMAIL_HOST_PASSWORD = 'i3ufQvqLngbhWxSxVi14'  # '0AHEcV0EmXrhVkWAf05D'  #'rf%Fk1Tiq'      # пароль от ящика
+EMAIL_USE_TLS = True                     # использование протокола шифрования
+EMAIL_USE_SSL = False
+
+#### DEFAULT_FROM_EMAIL = 'bashkirov1985@internet.ru'  # email, с которого будет отправлено письмо
 
 
 CKEDITOR_UPLOAD_PATH = "uploads/"

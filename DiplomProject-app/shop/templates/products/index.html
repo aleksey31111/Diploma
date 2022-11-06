@@ -108,10 +108,15 @@
 							<h3 class="title">Товары</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab1">Диски</a></li>
-									<li><a data-toggle="tab1" href="#tab1">Аксессуары</a></li>
-									<li><a data-toggle="tab" href="#tab1">Роботы</a></li>
-									<li><a data-toggle="tab" href="#tab1">Диски</a></li>
+									{% for category in categories %}
+									{% if category.id == 1 %}
+									<li class="active"><a data-toggle="tab1" href="{% url 'category' category.id %}">Диски</a></li>
+									{% elif category.id == 3 %}
+									<li><a data-toggle="tab1" href="{% url 'category' category.id %}">Аксессуары</a></li>
+									{% elif category.id == 2 %}
+									<li><a data-toggle="tab1" href="{% url 'category' category.id %}">Роботы</a></li>
+									{% endif %}
+									{% endfor %}
 								</ul>
 							</div>
 						</div>
@@ -157,7 +162,7 @@
 												<a href="{% url 'basket_add' product.id %}">
 													<input type="submit" class="add-to-cart-btn" value="Добавить в корзину">
 														<i class="fa fa-shopping-cart"></i> Добавить в корзину
-													</input>
+
 												</a>
 											</div>
 										</div>

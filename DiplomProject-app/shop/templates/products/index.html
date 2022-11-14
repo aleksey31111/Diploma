@@ -16,21 +16,25 @@
 				<!-- row -->
 				<div class="row">
 					<!-- shop -->
-					{% for category in categories %}
-					{% if category.id == 1 %}
+					{% for c in categories %}
+
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
-								<img src="{% static 'img/Discs_collection_game.jpg' %}" style="height:230px"  alt="">
-								<p>
-									<p style="text-indent:120px">Игры | ПО для PC<br></p>
-									<p style="text-indent:90px">для Разных Игровых устройств.</p>
-								</p>
+								<h3>{{ c.name }}<br>Коллекция</h3>
+								<a href="{{ c.get_absolute_url }}" class="list-group-item">
+									{{ c.name }}
+
+
+									<i class="fa fa-arrow-circle-right">
+									</i>
+								</a>
+								<img src="{{ product.image.url }}">
 							</div>
 							<div class="shop-body">
-								<h3>Диски<br>Коллекция</h3>
-								<a href="{% url 'category' category.id %}" class="list-group-item">
-									{{ category.name }}
+								<h3>{{ c.name }}<br>Коллекция</h3>
+								<a href="{{ c.get_absolute_url }}" class="list-group-item">
+									{{ c.name }}
 
 									<i class="fa fa-arrow-circle-right">
 									</i>
@@ -39,55 +43,11 @@
 							</div>
 						</div>
 					</div>
+
+            		{% endfor %}
 					<!-- /shop -->
 
-					<!-- shop -->
-					{% elif category.id == 3 %}
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="{% static 'img/shop03.png' %}" alt="">
-								<p>
-									<p style="text-indent:110px">Часы Наушники  <br></p>
-									<p style="text-indent:80px">Зарядники Коммуникаторы.</p>
-								</p>
-							</div>
-							<div class="shop-body">
-								<h3>Аксессуары<br>Коллекция</h3>
 
-								<a href="{% url 'category' category.id %}" class="list-group-item">
-									{{ category.name }}
-								</a>
-							</div>
-						</div>
-					</div>
-
-					<!-- /shop -->
-
-					<!-- shop -->
-					{% elif category.id == 2 %}
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								<img src="{% static 'img/robot_tank_python.jpg' %}" style="height:230px" alt="">
-							</div>
-							<p>
-									<p style="text-indent:120px">Роботы  <br></p>
-									<p style="text-indent:90px">python</p>
-							</p>
-							<div class="shop-body">
-								<h3>Роботы<br>Коллекция</h3>
-
-								<a href="{% url 'category' category.id %}" class="list-group-item">
-									{{ category.name }}
-								</a>
-
-							</div>
-						</div>
-					</div>
-					{% endif %}
-					{% endfor %}
-					<!-- /shop -->
 				</div>
 				<!-- /row -->
 			</div>
@@ -102,26 +62,22 @@
 				<!-- row -->
 				<div class="row">
 
-					<!-- section title -->
+<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
 							<h3 class="title">Товары</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									{% for category in categories %}
-									{% if category.id == 1 %}
-									<li class="active"><a data-toggle="tab1" href="{% url 'category' category.id %}">Диски</a></li>
-									{% elif category.id == 3 %}
-									<li><a data-toggle="tab1" href="{% url 'category' category.id %}">Аксессуары</a></li>
-									{% elif category.id == 2 %}
-									<li><a data-toggle="tab1" href="{% url 'category' category.id %}">Роботы</a></li>
-									{% endif %}
-									{% endfor %}
+									{% for c in categories %}
+                <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+            		{% endfor %}
 								</ul>
 							</div>
 						</div>
 					</div>
-					<!-- /section title -->
+<!-- 56 --><!-- /section title -->
 
 <!-- Products tab & slick -->
 					<div class="col-md-12">
@@ -143,7 +99,7 @@
 											</div>
 											<div class="product-body">
 												<p class="product-category">{{ product.category }}</p>
-												<h3 class="product-name"><a href="{{ product.get_absolut_url }}">{{ product.name|safe|truncatewords:30 }}</a></h3>
+												<h3 class="product-name"><a href="{{ product.get_absolute_url }}">{{ product.name|safe|truncatewords:30 }}</a></h3>
 												<h4 class="product-price">{{ product.price }} руб</h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
@@ -153,15 +109,15 @@
 													<i class="fa fa-star"></i>
 												</div>
 												<div class="product-btns">
-													<a href="{{ product.get_absolut_url }}">
+													<a href="{{ product.get_absolute_url }}">
 													<i class="fa fa-eye"></i><span class="tooltipp">Просмотр товара</span>
 													</a>
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<a href="{% url 'basket_add' product.id %}">
-													<input type="submit" class="add-to-cart-btn" value="Добавить в корзину">
-														<i class="fa fa-shopping-cart"></i> Добавить в корзину
+												<a href="{{ product.get_absolute_url }}">
+													<input type="submit" class="add-to-cart-btn" value="Перейти">
+														<i class="fa fa-shopping-cart"></i>
 
 												</a>
 											</div>
@@ -226,7 +182,7 @@
 							</ul>
 							<h2 class="text-uppercase">Товары на любой вкус</h2>
 							<p>Качественные товары</p>
-							<a class="primary-btn cta-btn" href="{% url 'products' %}">Посмотреть товары</a>
+							<a class="primary-btn cta-btn" href="{% url 'products:product_list' %}">Посмотреть товары</a>
 						</div>
 					</div>
 				</div>
@@ -276,13 +232,14 @@
 										<h4 class="product-price">{{ product.price }} руб</h4>
 									</div>
 								</div>
-								<div class="add-to-cart">
-									<a href="{% url 'basket_add' product.id %}">
-										<input type="submit" class="add-to-cart-btn" value="Добавить в корзину">
-											<i class="fa fa-shopping-cart"></i>
 
-									</a>
-								</div>
+								<div class="add-to-cart">
+												<a href="{{ product.get_absolute_url }}">
+													<input type="submit" class="add-to-cart-btn" value="Перейти к Товару для Покупки">
+														<i class="fa fa-shopping-cart"></i>
+
+												</a>
+											</div>
 								{% endif %}
 								{% endfor %}
 								<!-- /product widget -->

@@ -20,7 +20,9 @@
     </div>
     {% endif %}
     {% autoescape off %}
+    <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
     <p>Категория: <h1>{{ product.category }}</h1></p>
+    <p>Название: <h4>{{ product.name|striptags|safe }}</h4></p>
     <p>Описание: <h4>{{ product.description|striptags|safe }}</h4></p>
     <p>Короткое описание: <h5>{{ product.short_description|striptags|safe }}</h5></p>
     <p>Цена: <h3>{{ product.price|striptags|safe }} руб</h3></p>

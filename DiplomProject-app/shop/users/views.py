@@ -8,7 +8,7 @@ from django.template.loader import get_template
 from django.conf import settings
 from django.core.mail import send_mail
 
-from products.models import Basket
+# from products.models import Basket
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from .forms import ContactForm
 
@@ -22,7 +22,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
-                return redirect('index')
+                return redirect('products:index')
     else:
         form = UserLoginForm()
     context = {
@@ -60,14 +60,8 @@ def profile(request):
     else:
         form = UserProfileForm(instance=user)
 
-    baskets = Basket.objects.filter(user=user)
-    total_quantity = sum(basket.quantity for basket in baskets)
-    total_sum = sum(basket.sum() for basket in baskets)
     context = {
         'form': form,
-        'baskets': Basket.objects.filter(user=user),
-        'total_quantity': total_quantity,
-        'total_sum': total_sum,
     }
     return render(request, 'users/profile.html', context)
 

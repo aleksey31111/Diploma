@@ -59,6 +59,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   color: #333;
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -630,7 +631,7 @@ textarea.input {
 \*----------------------------*/
 
 .main-nav>li+li {
-  margin-left: 30px
+  margin-left: 30px;
 }
 
 .main-nav>li>a {
@@ -2130,6 +2131,18 @@ textarea.input {
   position: static;
   margin: 15px 0px;
 }
+
+/*==========================================================
+#responsive-nav>ul{
+    style="display: flex;
+    justify-content: space-between;
+    margin-left: 20px"
+}
+
+#responsive-nav ul li{
+    margin-left: 20px
+}
+==========================================================*/
 
 /*=========================================================
 	13 -> RESPONSIVE

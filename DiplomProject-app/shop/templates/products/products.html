@@ -44,7 +44,7 @@
                         <div class="card-body">
                             <h4 class="card-title">
 
-                                <a href="{{ product.get_absolut_url }}">{{ product.name|striptags|safe|truncatewords:30 }}</a>
+                                <a href="{{ product.get_absolute_url }}">{{ product.name|striptags|safe|truncatewords:30 }}</a>
 
                             </h4>
                             <p class="card-text">Описание: {{ product.description|striptags|safe|truncatewords:20}}</p>
@@ -54,10 +54,9 @@
 
                         </div>
                         <div class="card-footer text-center">
-                            <a href="{% url 'basket_add' product.id %}">
-                                <button type="button" class="btn btn-outline-success">
-                                    Отправить в корзину
-                                </button>
+                            <a href="{% url 'cart:cart_add' product.id %}">
+
+                                <input type="submit" value="Добавить в корзину">
                             </a>
                         </div>
                     </div>

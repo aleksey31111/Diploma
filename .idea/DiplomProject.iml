@@ -4,9 +4,9 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/DiplomProject-app_COPY_5_no_column_product_busket_product_ProfitableProposition_id/shop" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DiplomProject-app_COPY_8_Django_13_CntactForm_error/shop" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../pythonGraduate_WorkProject/DiplomProject-app/shop" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DiplomProject-app/shop" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/DiplomProject-app_COPY_1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../pythonGraduate_WorkProject/SHOP_15_11_2022/shop" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="inheritedJdk" />
